@@ -8,7 +8,9 @@
       <tr>
         <th>Tên sản phẩm</th>
         <th>Tên seo</th>
+        <th>Tên phân loại</th>
         <th>NSX</th>
+        <th>Nhu cầu</th>
         <th>Giá</th>
         <th>Hình ảnh Default</th>
         <th>Hình ảnh thumb</th>
@@ -21,7 +23,9 @@
         <tr>
         <td> <%=response.laptops[i].name %> </td>
         <td> <%=response.laptops[i].nameseo %> </td>
+        <td> <%=response.laptops[i].phanloai %> </td>
         <td> <%=response.laptops[i].nsx %> </td>
+        <td> <%=response.laptops[i].nhucau %> </td>
         <td> <%=response.laptops[i].price %> </td>
         <td class="image-response">
           <%for(var n=0;n<response.laptops[i].imagedefault.length;n++){%>

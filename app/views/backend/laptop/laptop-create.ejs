@@ -31,11 +31,29 @@
         <textarea id="description" name="description" placeholder="Nhập Mô tả" class="form-control">Biên soạn bài viết </textarea>
       </div>
       <div class="form-group">
+        <label>Chọn phân loại sản phẩm</label>
+        <select name="phanloai">
+          <option value="" selected disabled hidden>Chọn phân loại sản phẩm</option>
+          <%for(var i=0; i<phanloais.count;i++){%>
+          <option value="<%=phanloais.phanloai[i].name%>"><%=phanloais.phanloai[i].name%></option>
+          <%}%>
+        </select>
+      </div>
+      <div class="form-group">
         <label>Chọn nhà sản xuất</label>
         <select name="nsx">
           <option value="" selected disabled hidden>Chọn NSX</option>
           <%for(var i=0; i<nsxs.count;i++){%>
           <option value="<%=nsxs.nsx[i].name%>"><%=nsxs.nsx[i].name%></option>
+          <%}%>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Chọn nhu cầu</label>
+        <select name="nhucau">
+          <option value="" selected disabled hidden>Chọn Nhu cầu sử dụng</option>
+          <%for(var i=0; i<nhucaus.count;i++){%>
+          <option value="<%=nhucaus.nhucau[i].name%>"><%=nhucaus.nhucau[i].name%></option>
           <%}%>
         </select>
       </div>

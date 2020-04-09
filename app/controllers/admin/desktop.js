@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const Desktop = require("../../models/Desktop");
-const NSX = require("../../models/nsx");
+const Desktop = require("../../models/desktop");
+const NSX = require("../../models/nsxlaptop");
 exports.desktops_get_all =(req, res, next) => {
   if(req.isAuthenticated()){
     Desktop.find()

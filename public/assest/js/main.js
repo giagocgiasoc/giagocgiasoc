@@ -136,6 +136,30 @@ $(document).ready(function(){
       }
     })
   });
+  $('.delete-nhucau').on('click',function(e){
+    $target =$(e.target);
+    const id = $target.attr('data-id');
+      console.log(id);
+    $.ajax({
+      type:"DELETE",
+      url:'/nhucau/'+id,
+      success:function(data){
+        location.reload();
+      }
+    })
+  });
+  $('.delete-phanloai').on('click',function(e){
+    $target =$(e.target);
+    const id = $target.attr('data-id');
+      console.log(id);
+    $.ajax({
+      type:"DELETE",
+      url:'/phanloai/'+id,
+      success:function(data){
+        location.reload();
+      }
+    })
+  });
 });
 
 $(document).ready(function(){
@@ -175,7 +199,6 @@ $(document).ready(function(){
 $(document).ready(function() {
   var sync1 = $("#sync1");
   var sync2 = $("#sync2");
-
   sync1.owlCarousel({
     singleItem : true,
     slideSpeed : 1000,
@@ -185,7 +208,6 @@ $(document).ready(function() {
     responsiveRefreshRate : 200,
 	navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"]
   });
-
   sync2.owlCarousel({
     items : 3,
     itemsDesktop      : [1199,3],
@@ -210,13 +232,11 @@ $(document).ready(function() {
       center(current)
     }
   }
-
   $("#sync2").on("click", ".owl-item", function(e){
     e.preventDefault();
     var number = $(this).data("owlItem");
     sync1.trigger("owl.goTo",number);
   });
-
   function center(number){
     var sync2visible = sync2.data("owlCarousel").owl.visibleItems;
     var num = number;
@@ -262,7 +282,50 @@ $(document).ready(function() {
       itemsTablet: [600,2.5], //1 items between 600 and 0
       itemsMobile : [320,1.2] // itemsMobile disabled - inherit from itemsTablet option
   });
+})
+$(document).ready(function() {
+    var owl = $(".owl-danhmuc-mb");
+    owl.owlCarousel({
+        items : 2, //10 items above 1000px browser width
+        itemsDesktop : [1000,3], //5 items between 1000px and 901px
+        itemsDesktopSmall : [900,2.5], // betweem 900px and 601px
+        itemsTablet: [600,1.2], //1 items between 600 and 0
+        itemsMobile : [320,1.2] // itemsMobile disabled - inherit from itemsTablet option
+    });
     owl.trigger('owl.play',4000);
+});
+$(document).ready(function() {
+    var owl = $(".owl-timkiemhangdau-mb");
+    owl.owlCarousel({
+        items : 1, //10 items above 1000px browser width
+        itemsDesktop : [1000,3], //5 items between 1000px and 901px
+        itemsDesktopSmall : [900,2.5], // betweem 900px and 601px
+        itemsTablet: [600,1.8], //1 items between 600 and 0
+        itemsMobile : [320,1.8] // itemsMobile disabled - inherit from itemsTablet option
+    });
+    owl.trigger('owl.play',4000);
+});
+$(document).ready(function() {
+    var owl = $(".lt-nhucau");
+    owl.owlCarousel({
+        items : 3, //10 items above 1000px browser width
+        itemsDesktop : [1000,5], //5 items between 1000px and 901px
+        itemsDesktopSmall : [900,4], // betweem 900px and 601px
+        itemsTablet: [600,2.5], //1 items between 600 and 0
+        itemsMobile : [320,2.5] // itemsMobile disabled - inherit from itemsTablet option
+    });
+    owl.trigger('owl.play',8000);
+});
+$(document).ready(function() {
+    var owl = $(".lt-hang");
+    owl.owlCarousel({
+        items : 4, //10 items above 1000px browser width
+        itemsDesktop : [1000,5], //5 items between 1000px and 901px
+        itemsDesktopSmall : [900,4.2], // betweem 900px and 601px
+        itemsTablet: [600,3.5], //1 items between 600 and 0
+        itemsMobile : [320,3.5] // itemsMobile disabled - inherit from itemsTablet option
+    });
+    owl.trigger('owl.play',8000);
 });
 function removeAccents(strAccents){
   strAccents = strAccents.split('');
@@ -296,4 +359,4 @@ $(document).ready(function() {
 });
 $(document).ready(function(){
   $("#zoom_easing").elevateZoom({easing : true});
-})
+});

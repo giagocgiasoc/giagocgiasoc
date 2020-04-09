@@ -5,6 +5,7 @@ const mongoose= require('mongoose');
 const mayvpRouter = require('./app/routers/mayvp');
 const nsxRouter = require('./app/routers/nsx');
 const nsxlaptopRouter = require('./app/routers/nsxlaptop');
+const phanloaiRouter = require('./app/routers/phanloai');
 const laptopRouter = require('./app/routers/laptop');
 const desktopRouter = require('./app/routers/desktop');
 const cameraRouter = require('./app/routers/camera');
@@ -12,6 +13,7 @@ const danhmucRouter = require('./app/routers/danhmuc');
 const postRouter = require('./app/routers/posts');
 const slideHome = require('./app/routers/slidehome');
 const bannerfix = require('./app/routers/bannerfix');
+const nhucaulaptop = require('./app/routers/nhucaulaptop');
 const postRoutersite = require('./app/routersSite/posts');
 const typepostRouter = require('./app/routers/typepost');
 const camerasiteRouter = require('./app/routersSite/camera');
@@ -20,7 +22,6 @@ const maytinhsiteRouter = require('./app/routersSite/maytinh');
 const userRouter = require('./app/routers/user');
 const orderRouter = require('./app/routers/order');
 const cartRouter = require('./app/routersSite/cart');
-const cartlaptopRouter = require('./app/routersSite/cartlaptop');
 var Cart = require('./app/models/cart');
 const expressLayouts = require('express-ejs-layouts');
 const sassMiddleware = require('node-sass-middleware');
@@ -68,7 +69,7 @@ app.use(sassMiddleware({
     dest: path.join(__dirname, 'public/assest/css'),
     debug: true,
     outputStyle: 'compressed',
-  prefix: '/prefix'
+  prefix: '/css'
 }));
 //end sass
 //begin passsport2
@@ -88,6 +89,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 //end passport3
 app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname,'public/assest')));
 //upload image = ckeditor
 
 app.use('/',userRouter);
@@ -103,13 +105,16 @@ app.use('/',postRouter);
 app.use('/',typepostRouter);
 app.use('/',orderRouter);
 app.use('/',cartRouter);
-app.use('/',cartlaptopRouter);
+
 app.use('/',slideHome);
 app.use('/',bannerfix);
+app.use('/',nhucaulaptop);
+app.use('/',phanloaiRouter);
 app.use('/',camerasiteRouter);
 app.use('/',trangchusiteRouter);
 app.use('/',maytinhsiteRouter);
 app.use('/',postRoutersite);
+
 
 //app.use('/customer',customerRouter);
 //end upload image ckeditor

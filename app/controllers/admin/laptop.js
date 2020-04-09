@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 const Laptop = require("../../models/laptop");
 const NSX = require("../../models/nsxlaptop");
+const Phanloai = require("../../models/phanloai");
+const Nhucau = require("../../models/nhucaulaptop");
 exports.laptops_get_all =(req, res, next) => {
   if(req.isAuthenticated()){
     Laptop.find()
-      .select("_id name nameseo nsx price tinhnang description baohanh index image imagedefault")
+      .select("_id name nameseo phanloai  nsx nhucau price tinhnang description baohanh index image imagedefault")
       .exec()
       .then(docs => {
         const response = {
@@ -13,7 +15,9 @@ exports.laptops_get_all =(req, res, next) => {
             return {
               name: doc.name,
               nameseo: doc.nameseo,
+              phanloai:doc.phanloai,
               nsx: doc.nsx,
+              nhucau: doc.nhucau,
               price: doc.price,
               tinhnang:doc.tinhnang,
               _id: doc._id,
@@ -59,8 +63,44 @@ exports.laptops_add_laptop=(req,res,next)=>{
          };
        })
      };
-  res.render('backend/laptop/laptop-create',{nsxs:nsxs,layout:'layouts/layoutsadmin'});
+     Nhucau.find()
+      .select("_id name")
+      .exec()
+      .then(docs => {
+        const nhucaus = {
+          count: docs.length,
+          nhucau: docs.map(doc => {
+            return {
+              name: doc.name,
+              _id: doc._id,
+              request: {
+                type: "GET",
+                url: "http://localhost:3000/nsxlaptop/" + doc._id
+              }
+            };
+          })
+        };
+        Phanloai.find()
+         .select("_id name")
+         .exec()
+         .then(docs => {
+           const phanloais = {
+             count: docs.length,
+             phanloai: docs.map(doc => {
+               return {
+                 name: doc.name,
+                 _id: doc._id,
+                 request: {
+                   type: "GET",
+                   url: "http://localhost:3000/nsxlaptop/" + doc._id
+                 }
+               };
+             })
+           };
+  res.render('backend/laptop/laptop-create',{phanloais:phanloais,nsxs:nsxs,nhucaus:nhucaus,layout:'layouts/layoutsadmin'});
      })
+  })
+  })
   .catch(err => {
   console.log(err);
   res.status(500).json({
@@ -74,7 +114,9 @@ exports.laptops_create_laptop = (req, res, next) => {
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     nameseo: req.body.nameseo,
+    phanloai:req.body.phanloai,
     nsx:req.body.nsx,
+    nhucau:req.body.nhucau,
     price: req.body.price,
     tinhnang:req.body.tinhnang,
     description:req.body.description,
@@ -98,7 +140,7 @@ exports.laptops_create_laptop = (req, res, next) => {
 exports.laptops_get_laptop = (req, res, next) => {
   const id = req.params.laptopId;
   Laptop.findById(id)
-    .select(" name nameseo  nsx price tinhnang description baohanh index imagedefault image")
+    .select(" name nameseo phanloai nsx price tinhnang description baohanh index imagedefault image")
     .exec()
     .then(doc => {
       console.log("get database", doc);
@@ -112,7 +154,7 @@ exports.laptops_get_laptop = (req, res, next) => {
 exports.laptops_get_laptop_edit = (req, res, next) => {
   const id = req.params.laptopId;
   Laptop.findById(id)
-    .select("name nameseo nsx  price  tinhnang  description baohanh index imagedefault image")
+    .select("name nameseo phanloai nsx nhucau price  tinhnang  description baohanh index imagedefault image")
     .exec()
     .then(doc => {
       console.log("From database", doc);
@@ -153,7 +195,9 @@ exports.laptops_update_laptop_edit = (req, res, next) => {
     if(req.files['image']==undefined && req.files['imagedefault']==undefined){
       doc.name=req.body.name;
       doc.nameseo=req.body.nameseo;
+      doc.phanloai=req.body.phanloai;
       doc.nsx=req.body.nsx;
+      doc.nhucau=req.body.nhucau;
       doc.price=req.body.price;
       doc.tinhnang=req.body.tinhnang;
       doc.description=req.body.description;
@@ -164,7 +208,9 @@ exports.laptops_update_laptop_edit = (req, res, next) => {
    else if(req.files['imagedefault']==undefined){
      doc.name=req.body.name;
      doc.nameseo=req.body.nameseo;
+     doc.phanloai=req.body.phanloai;
      doc.nsx=req.body.nsx;
+     doc.nhucau=req.body.nhucau;
      doc.price=req.body.price;
      doc.tinhnang=req.body.tinhnang;
      doc.description=req.body.description;
@@ -176,7 +222,9 @@ exports.laptops_update_laptop_edit = (req, res, next) => {
    else if(req.files['image']==undefined){
      doc.name=req.body.name;
      doc.nameseo=req.body.nameseo;
+     doc.phanloai=req.body.phanloai;
      doc.nsx=req.body.nsx;
+     doc.nhucau=req.body.nhucau;
      doc.price=req.body.price;
      doc.tinhnang=req.body.tinhnang;
      doc.description=req.body.description;
@@ -188,7 +236,9 @@ exports.laptops_update_laptop_edit = (req, res, next) => {
    else{
      doc.name=req.body.name;
      doc.nameseo=req.body.nameseo;
+     doc.phanloai=req.body.phanloai;
      doc.nsx=req.body.nsx;
+     doc.nhucau=req.body.nhucau;
      doc.price=req.body.price;
      doc.tinhnang=req.body.tinhnang;
      doc.description=req.body.description;

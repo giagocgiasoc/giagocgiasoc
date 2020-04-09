@@ -1,6 +1,6 @@
 const express =  require ('express')
 const router = express.Router();
-const Camera = require("../models/camera");
+const Laptop = require("../models/laptop");
 var Cart = require('../models/cart');
 var Order = require('../models/order');
 var nodemailer= require('nodemailer');
@@ -10,7 +10,7 @@ router.get('/cart/add-to-cart/:id', function(req, res, next) {
   if(req.useragent.isMobile){
     var productId = req.params.id;
     var cart = new Cart(req.session.cart ? req.session.cart : {});
-    Camera.findById(productId, function(err, product) {
+    Laptop.findById(productId, function(err, product) {
        if (err) {
            return res.redirect('/');
        }
@@ -24,7 +24,7 @@ router.get('/cart/add-to-cart/:id', function(req, res, next) {
     var productId = req.params.id;
     var cart = new Cart(req.session.cart ? req.session.cart : {});
 
-    Camera.findById(productId, function(err, product) {
+    Laptop.findById(productId, function(err, product) {
        if (err) {
            return res.redirect('/');
        }
@@ -38,42 +38,53 @@ router.get('/cart/add-to-cart/:id', function(req, res, next) {
 
 });
 router.get('/cart/shopping-cart/',function(req,res,next){
-  if (!req.session.cart) {
-      return res.render('fontend/shopping-cart', {products: null});
-  }
-   var cart = new Cart(req.session.cart);
-       Camera.find()
-                           .limit(5)
-                           .skip(0)
-                           .select("_id name nameseo nsx image imagedefault price title description sortdescription baohanh index")
-                           .exec()
-                           .then(docs => {
-                               var cameraorder = {
-                                 count: docs.length,
-                                 cameras: docs.map(doc => {
-                                   return {
-                                     name: doc.name,
-                                     nameseo:doc.nameseo,
-                                     price: doc.price,
-                                     nsx: doc.nsx,
-                                     image: doc.image,
-                                     imagedefault:doc.imagedefault,
-                                     _id: doc._id,
-                                     baohanh:doc.baohanh,
-                                     title:doc.title,
-                                     description:doc.description,
-                                     sortdescription:doc.sortdescription,
-                                     index:doc.index,
-                                     request: {
-                                       type: "GET",
-                                       url: "http://localhost:3000/ghemassages/" + doc._id
-                                     }
-                                   }
-                                 })
-                               };
-               res.render('fontend/shopping-cart', {cameraorder:cameraorder,products: cart.generateArray(), totalPrice: cart.totalPrice});
-               next();
-            })
+    if(req.useragent.isMobile){
+      if (!req.session.cart) {
+          return res.render('mobile/shopping-cart-mb', {products: null,layout:'layouts/layoutmobile/layoutmobile'});
+      }
+      var cart = new Cart(req.session.cart);
+                  res.render('mobile/shopping-cart-mb', {products: cart.generateArray(), totalPrice: cart.totalPrice,layout:'layouts/layoutmobile/layoutmobile'});
+                  next();
+    }
+    else{
+      if (!req.session.cart) {
+          return res.render('fontend/shopping-cart', {products: null});
+      }
+      var cart = new Cart(req.session.cart);
+          Laptop.find()
+                              .limit(5)
+                              .skip(0)
+                              .select("_id name nameseo phanloai nsx nhucau tinhnang image imagedefault price description baohanh index")
+                              .exec()
+                              .then(docs => {
+                                var modelorder = {
+                                  count: docs.length,
+                                  sanphams: docs.map(doc => {
+                                    return {
+                                      name: doc.name,
+                                      nameseo:doc.nameseo,
+                                      price: doc.price,
+                                      nsx: doc.nsx,
+                                      tinhnang:doc.tinhnang,
+                                      image: doc.image,
+                                      imagedefault:doc.imagedefault,
+                                      _id: doc._id,
+                                      baohanh:doc.baohanh,
+                                      description:doc.description,
+                                      index:doc.index,
+                                      request: {
+                                        type: "GET",
+                                        url: "http://localhost:3000/ghemassages/" + doc._id
+                                      }
+                                    }
+                                  })
+                                };
+                  res.render('fontend/laptop/shopping-cart', {modelorder:modelorder,products: cart.generateArray(), totalPrice: cart.totalPrice,layout:'layouts/layoutdesktop/layoutmaytinhdetail'});
+                  next();
+               })
+    }
+
+
   })
 router.get('/cart/reduce/:id', function(req, res, next) {
     var productId = req.params.id;
@@ -104,117 +115,55 @@ router.get('/cart/checkout', function(req, res, next) {
     }
     var cart = new Cart(req.session.cart);
     var errMsg = req.flash('error')[0];
-    res.render('mobile/checkout-mb', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg,layout:'layouts/layoutmobile'});
+    res.render('mobile/checkout-mb', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg,layout:'layouts/layoutmobile/layoutmobile'});
   }else{
     if (!req.session.cart) {
         return res.redirect('/cart/shopping-cart');
     }
     var cart = new Cart(req.session.cart);
     var errMsg = req.flash('error')[0];
-    Camera.find()
+    Laptop.find()
           .limit(5)
           .skip(0)
           .select("_id name nameseo nsx image imagedefault price baohanh title  sortdescription description  index")
           .exec()
           .then(docs => {
-                                var cameraall = {
-                                  count: docs.length,
-                                  cameras: docs.map(doc => {
-                                    return {
-                                      name: doc.name,
-                                      nameseo:doc.nameseo,
-                                      status:doc.status,
-                                      nganhhang:doc.nganhhang,
-                                      trademark:doc.trademark,
-                                      price: doc.price,
-                                      pricesale:doc.pricesale,
-                                      saleoff:doc.price - doc.pricesale,
-                                      image: doc.image,
-                                      imagedefault:doc.imagedefault,
-                                      _id: doc._id,
-                                      baohanh:doc.baohanh,
-                                      title:doc.title,
-                                      description:doc.description,
-                                      ogtitle:doc.ogtitle,
-                                      ogdescription:doc.ogdescription,
-                                      keywords:doc.keywords,
-                                      index:doc.index,
-                                      request: {
-                                        type: "GET",
-                                        url: "http://localhost:3000/camera/" + doc._id
-                                      }
-                                    }
-                                  })
-                                };
-            res.render('fontend/checkout', {cameraall:cameraall,total: cart.totalPrice, errMsg: errMsg, noError: !errMsg});
+            Laptop.find()
+                                .limit(5)
+                                .skip(0)
+                                .select("_id name nameseo nsx price tinhnang description baohanh index image imagedefault")
+                                .exec()
+                                .then(docs => {
+                                    var modelorder = {
+                                      count: docs.length,
+                                      sanphams: docs.map(doc => {
+                                        return {
+                                          name: doc.name,
+                                          nameseo:doc.nameseo,
+                                          price: doc.price,
+                                          nsx: doc.nsx,
+                                          tinhnang:doc.tinhnang,
+                                          image: doc.image,
+                                          imagedefault:doc.imagedefault,
+                                          _id: doc._id,
+                                          baohanh:doc.baohanh,
+                                          description:doc.description,
+                                          index:doc.index,
+                                          request: {
+                                            type: "GET",
+                                            url: "http://localhost:3000/ghemassages/" + doc._id
+                                          }
+                                        }
+                                      })
+                                    };
+            res.render('fontend/laptop/checkout', {modelorder:modelorder,total: cart.totalPrice, errMsg: errMsg, noError: !errMsg,layout:'layouts/layoutdesktop/layoutmaytinhdetail'});
           })
+
+        });
         }
 });
 router.post('/cart/checkout', function(req, res, next) {
   if(req.useragent.isMobile){
-    if (!req.session.cart) {
-        return res.redirect('/cart/shopping-cart');
-    }
-    var address=req.body.address,
-    name= req.body.name,
-    note=req.body.note,
-    phone=req.body.phone,
-    email=req.body.email;
-    var cart = new Cart(req.session.cart);
-    var order = new Order({
-        cart: cart,
-        address: address,
-        name: name,
-        note:note,
-        phone:phone,
-        email:email
-    });
-    var cartt=cart.generateArray();
-    var output="";
-    for(var i=0;i<cartt.length;i++){
-      output+= cartt[i].item.name  +" - "
-    }
-    order.save(function(err, result) {
-        req.flash('success', 'Đăng ký mua thành công');
-        req.session.cart = null;
-        console.log("ddon hang",order);
-        console.log("giohang%s",cart);
-        var successMsg = req.flash('success')[0];
-        var transporter =  nodemailer.createTransport({ // config mail server
-            service: 'Gmail',
-            auth: {
-                user: 'ghemassagecentre@gmail.com',
-                pass: 'Vinh@1234'
-            }
-        });
-        transporter.use('compile',hbs({
-          viewPath:'app/views/fontend/',
-          extName:'.ejs'
-        }))
-        var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
-            from: 'Ghemassagecentre <ghemassagecentre@gmail.com>',
-            to: email,
-            subject: 'Bạn đã đặt hàng thành công',
-             template:'templateMailer',
-             context:{
-               address,
-               name,
-               note,
-               phone,
-               email,
-               output
-             }
-        }
-        transporter.sendMail(mainOptions, function(err, info){
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('Message sent: ' +  info.response);
-            }
-        });
-          res.render('mobile/checkoutInfo-mb',{successMsg: successMsg, noMessages: !successMsg,order:order,cart:cart.generateArray(),layout:'layouts/layoutmobile'});
-    });
-  }else{
     if (!req.session.cart) {
         return res.redirect('/cart/shopping-cart');
     }
@@ -286,7 +235,82 @@ router.post('/cart/checkout', function(req, res, next) {
                 console.log('Message sent: ' +  info.response);
             }
         });
-        res.render('fontend/checkoutInfo',{successMsg: successMsg, noMessages: !successMsg,order:order,cart:cart.generateArray(),layout:'layouts/layout'});
+        res.render('mobile/muahangthanhcong',{successMsg: successMsg, noMessages: !successMsg,order:order,cart:cart.generateArray(),layout:'layouts/layoutmobile/layoutmobile'});
+    });
+  }
+}else{
+    if (!req.session.cart) {
+        return res.redirect('/cart/shopping-cart');
+    }
+
+    var address=req.body.address,
+    name= req.body.name,
+    note=req.body.note,
+    phone=req.body.phone,
+    email=req.body.email;
+    var cart = new Cart(req.session.cart);
+    var order = new Order({
+        cart: cart,
+        address: address,
+        name: name,
+        note:note,
+        phone:phone,
+        email:email
+    });
+    var cartt=cart.generateArray();
+    var output="";
+    for(var i=0;i<cartt.length;i++){
+      output+= cartt[i].item.name  +" - "
+    console.info("output la:",output);
+    console.info("email:",email);
+    order.save(function(err, result) {
+        req.flash('success', 'Đăng ký mua thành công');
+        req.session.cart = null;
+        console.log("ddonw hang :",order);
+        console.log("giohang:%s",cart);
+        var successMsg = req.flash('success')[0];
+        var transporter =  nodemailer.createTransport({ // config mail server
+            service: 'Gmail',
+            auth: {
+                user: 'ghemassagecentre@gmail.com',
+                pass: 'Vinh@1234'
+            }
+        });
+      const handlebarOptions = {
+    viewEngine: {
+      extName: '.hbs',
+      partialsDir: 'app/views/fontend/',
+      layoutsDir: '',
+      defaultLayout: '',
+    },
+    viewPath: 'app/views/fontend/',
+    extName: '.ejs',
+  };
+  transporter.use('compile', hbs(handlebarOptions));
+        var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
+            from: 'Ghemassagecentre <ghemassagecentre@gmail.com>',
+            to: email,
+            subject: 'Bạn đã đặt hàng thành công',
+             template:'templateMailer',
+             context:{
+               address,
+               name,
+               note,
+               phone,
+               email,
+               output
+             }
+
+        }
+        transporter.sendMail(mainOptions, function(err, info){
+            if (err) {
+                console.log("loi roi ne",err);
+
+            } else {
+                console.log('Message sent: ' +  info.response);
+            }
+        });
+        res.render('fontend/laptop/muahangthanhcong',{successMsg: successMsg, noMessages: !successMsg,order:order,cart:cart.generateArray(),layout:'layouts/layoutdesktop/layoutmaytinhdetail'});
     });
   }
 }

@@ -3,8 +3,10 @@ var Schema = mongoose.Schema;
 const laptopSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   name:{type:String, required:true},
-    nameseo:{type:String,default:"name-seo"},
+  nameseo:{type:String,default:"name-seo"},
+  phanloai:{type:String,default:""},
   nsx:{type:String,default:""},
+  nhucau:{type:String,default:""},
   price:{type:Number,required:false},
   description:{type:String,default:"Mô tả"},
   tinhnang:{type:String,default:"Tính năng"},

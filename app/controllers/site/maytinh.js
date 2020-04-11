@@ -1511,7 +1511,7 @@ exports.phukien_get_home =  (req, res, next) => {
                         }
                       })
                     };
-                  res.render('mobile/desktop',{laptop:laptop,layout:'layouts/layoutmobile/layoutmobile'});
+                  res.render('mobile/phukien',{laptop:laptop,layout:'layouts/layoutmobile/layoutmobile'});
                 })
                 .catch(err => {
                   console.log(err);

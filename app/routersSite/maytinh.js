@@ -17,6 +17,6 @@ router.get('/laptop-mong-nhe',MaytinhController.laptop_mongnhe);
 router.get('/laptop-cao-cap',MaytinhController.laptop_caocap);
 router.get('/may-tinh-de-ban',MaytinhController.desktop_get_home);
 router.get('/phu-kien',MaytinhController.phukien_get_home);
-router.get('/:maytinhnameseo',MaytinhController.maytinh_get_maytinhnameseo);
+router.get('/san-pham/:maytinhnameseo',MaytinhController.maytinh_get_maytinhnameseo);
 
 module.exports = router;

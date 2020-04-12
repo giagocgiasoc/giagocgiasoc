@@ -166,11 +166,11 @@ exports.trangchu_get_home = (req, res, next) => {
             })
           })
         })
-        //.catch(err => {
-          //    console.log(err);
-          //    res.status(500).json({
-            //    error: err
-            //   });
-            //  });
+        .catch(err => {
+              console.log(err);
+              res.status(500).json({
+                error: err
+               });
+              });
       }
   }

@@ -29,7 +29,7 @@ router.get('/',(req, res, next) => {
               }
             })
           };
- res.render('fontend/test',{danhmucall:danhmucall});
+ res.render('fontend/test');
 })
 })
 module.exports = router;

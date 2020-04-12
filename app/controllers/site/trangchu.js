@@ -9,6 +9,6 @@ const Post = require("../../models/posts");
 exports.trangchu_get_home = (req, res, next) => {
 
 
-            res.render('fontend/trangchu',{layout:'layouts/layoutadmins'});
+            res.render('fontend/trangchu');
         })
   }

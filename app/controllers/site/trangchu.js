@@ -162,7 +162,7 @@ exports.trangchu_get_home = (req, res, next) => {
                                 }
                               })
                             };
-              res.render('fontend/trangchu',{danhmucall:danhmucall,slideall:slideall,bannerfixall:bannerfixall,layout:'layouts/layoutadmin'});
+              res.render('fontend/trangchu',{danhmucall:danhmucall,slideall:slideall,bannerfixall:bannerfixall,layout:'layouts/layoutadmins'});
             })
           })
         })

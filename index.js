@@ -24,7 +24,7 @@ const orderRouter = require('./app/routers/order');
 const cartRouter = require('./app/routersSite/cart');
 var Cart = require('./app/models/cart');
 const expressLayouts = require('express-ejs-layouts');
-//const sassMiddleware = require('node-sass-middleware');
+const sassMiddleware = require('node-sass-middleware');
 const connect = require('connect');
 const User = require("./app/models/user");
 const customerRouter=require('./app/routers/customer');
@@ -64,13 +64,13 @@ app.use(Passport.session());
 mongoose.connect('mongodb://atlasghemassage:ghemassage123@cluster0-shard-00-00-qm2ug.mongodb.net:27017,cluster0-shard-00-01-qm2ug.mongodb.net:27017,cluster0-shard-00-02-qm2ug.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority',{useUnifiedTopology: true,useNewUrlParser: true});
 mongoose.Promise=global.Promise;
 //render scss sang css
-//app.use(sassMiddleware({
-//    src: path.join(__dirname, 'public/assest/css/sass'),
-//    dest: path.join(__dirname, 'public/assest/css'),
-//    debug: true,
-//    outputStyle: 'compressed',
-//  prefix: '/css'
-//}));
+app.use(sassMiddleware({
+    src: path.join(__dirname, 'public/assest/css/sass'),
+    dest: path.join(__dirname, 'public/assest/css'),
+    debug: true,
+    outputStyle: 'compressed',
+  prefix: '/css'
+}));
 //end sass
 //begin passsport2
 app.use(function(req,res,next){

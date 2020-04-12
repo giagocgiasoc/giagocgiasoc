@@ -1,6 +1,5 @@
 const express =  require ('express')
 const router = express.Router();
-// const mongoose = require ('mongoose');
 const DanhmucController = require('../controllers/site/trangchu');
 const Danhmuc = require("../models/danhmuc");
 var Cart = require('../models/cart');

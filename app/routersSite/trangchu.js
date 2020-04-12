@@ -5,10 +5,6 @@ const Danhmuc = require("../models/danhmuc");
 var Cart = require('../models/cart');
  var bodyParser = require('body-parser');
  var urlencodedParser = bodyParser.urlencoded({ extended: false })
-//router.get('/',DanhmucController.trangchu_get_home);
-router.get('/',(req, res, next) => {
+router.get('/',DanhmucController.trangchu_get_home);
 
- res.render('fontend/test');
-
-})
 module.exports = router;

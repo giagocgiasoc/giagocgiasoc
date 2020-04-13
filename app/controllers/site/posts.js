@@ -142,7 +142,7 @@ exports.posts_get_titleseo=(req,res,next)=>{
             };
           })
         };
-        res.render('mobile/news-detail-mb',{postsfilter:postsfilter,postsdetail:postsdetail,layout:'layouts/layoutmobile'});
+        res.render('mobile/news-detail-mb',{postsfilter:postsfilter,postsdetail:postsdetail,layout:'layouts/layoutmobile/layoutmobile'});
 
       })
     })

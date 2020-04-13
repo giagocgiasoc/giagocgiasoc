@@ -3,7 +3,7 @@ const Post = require("../../models/posts");
 const useragent = require('express-useragent');
 exports.posts_get_home = (req, res, next) => {
   if(req.useragent.isMobile){
-    res.render('mobile/homemobile',{layout:'layouts/layoutmobile'});
+    res.render('mobile/homemobile',{layout:'layouts/layoutmobile/layoutmobile'});
   }
   else{
         Post.find({typepost:"Tư Vấn Chọn Mua"})
@@ -64,7 +64,7 @@ exports.posts_get_home = (req, res, next) => {
                           };
                         })
                       };
-               res.render('fontend/typepost',{poststuvan:poststuvan,postshuongdan:postshuongdan,layout:'layouts/layout-listtypepost'});
+               res.render('fontend/typepost',{poststuvan:poststuvan,postshuongdan:postshuongdan,layout:'layouts/layoutsadmin'});
                 })
               })
             .catch(err => {
@@ -142,7 +142,7 @@ exports.posts_get_titleseo=(req,res,next)=>{
             };
           })
         };
-        res.render('mobile/news-detail-mb',{postsfilter:postsfilter,postsdetail:postsdetail,layout:'layouts/layoutmobile-service-detail'});
+        res.render('mobile/news-detail-mb',{postsfilter:postsfilter,postsdetail:postsdetail,layout:'layouts/layoutmobile'});
 
       })
     })
@@ -216,7 +216,7 @@ exports.posts_get_titleseo=(req,res,next)=>{
             };
           })
         };
-        res.render('fontend/posts-detail',{postsfilter:postsfilter,postsdetail:postsdetail,layout:'layouts/layoutadmin'});
+        res.render('fontend/posts-detail',{postsfilter:postsfilter,postsdetail:postsdetail,layout:'layouts/layoutsadmin'});
 
       })
     })

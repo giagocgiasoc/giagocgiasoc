@@ -67,6 +67,7 @@ app.use(Passport.session());
 mongodb_url='mongodb+srv://atlasghemassage:ghemassage123@cluster0-qm2ug.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(mongodb_url,{useUnifiedTopology: true,useNewUrlParser: true});
 mongoose.Promise=global.Promise;
+
 //render scss sang css
 app.use(sassMiddleware({
     src: path.join(__dirname, 'public/assest/css/sass'),

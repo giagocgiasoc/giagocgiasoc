@@ -245,7 +245,7 @@ exports.posts_get_titleseo=(req,res,next)=>{
             };
           })
         };
-        res.render('fontend/posts-detail',{postsfilter:postsfilter,postsdetail:postsdetail,layout:'layouts/layoutsadmin'});
+        res.render('fontend/posts-detail',{postsfilter:postsfilter,postsdetail:postsdetail,layout:'layouts/layout'});
 
       })
     })

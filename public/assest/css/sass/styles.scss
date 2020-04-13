@@ -591,6 +591,20 @@ li.item-tab.active{
     margin-top:10px;
   }
 }
+.wrap-newsdetail.mb{
+  float:left;
+  width:100%;
+  padding:10px;
+  h1.title-newsdetail{
+    font-size: 18px;
+    font-family: robotob;
+    color:$text-black;
+    margin:0px;
+    padding:0px;
+  }
+
+
+}
 .tinlienquan{
   float:left;
   width:30%;
@@ -663,6 +677,26 @@ div.suggest{
   right:0px;
   background:#fff;
   z-index: 100;
+  li{
+    float:left;
+    a{
+      color:#222;
+      text-decoration: none;
+      &:hover{
+        color:$bg-orange;
+      }
+    }
+
+  }
+}
+div.suggest.mb{
+  width:100%;
+  margin-bottom: 80px;
+  overflow: hidden;
+  display:block;
+  background:#fff;
+  position: relative;
+  top:0px;
   li{
     float:left;
     a{

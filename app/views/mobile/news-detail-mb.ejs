@@ -9,7 +9,7 @@
           </ol>
       </nav>
     </div>
-    <div class="wrap-newsdetail">
+    <div class="wrap-newsdetail mb">
       <h1 class="title-newsdetail"><%=postsdetail.post[0].title%></h1>
       <div class="info-news-detail">
         <span class="post-date"><i class="fa fa-clock-o"></i> <%=postsdetail.post[0].day%></span>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <aside>
-      <div class="suggest">
+      <div class="suggest mb">
           <figure class="template news">
                     <figcaption>Tin liên quan</figcaption>
                     <b></b>
@@ -37,24 +37,6 @@
           </div>
       </div>
     </aside>
-    <div class="aside-right-newsdetail-mb">
-      <div class="suggest  marTop10">
-          <figure class="template news letter">
-                    <figcaption>Nhận bản tin</figcaption>
-                    <b></b>
-          </figure>
-      </div>
-      <div class="form-news-letter">
-        <form action='/nhanbantin/ban-tin-news' method="post">
-          <div class="mc-field-group">
-            <input type="text" value="" name="email" placeholder="nhận bản tin qua email" >
-          </div>
-          <div class="clear">
-            <input type="submit" value="Subscribe" name="subscribe" class="btn-news-letter" >
-          </div>
-        </form>
-      </div>
 
-    </div>
 
 </section>

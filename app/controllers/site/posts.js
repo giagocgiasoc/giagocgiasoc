@@ -142,8 +142,37 @@ exports.posts_get_titleseo=(req,res,next)=>{
             };
           })
         };
-        res.render('mobile/news-detail-mb',{postsfilter:postsfilter,postsdetail:postsdetail,layout:'layouts/layoutmobile/layoutmobile'});
-
+        Post.find()
+             .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+             .limit(6)
+             .sort('index')
+             .exec()
+             .then(docs => {
+               const poststuvan = {
+                 count: docs.length,
+                 post: docs.map(doc => {
+                   return {
+                     title: doc.title,
+                     titleseo: doc.titleseo,
+                     shortdescription: doc.shortdescription,
+                     _id: doc._id,
+                     description:doc.description,
+                     day:doc.day,
+                     ogtitle:doc.ogtitle,
+                     ogdescription:doc.ogdescription,
+                     keywords:doc.keywords,
+                     typepost:doc.typepost,
+                     image:doc.image,
+                     index:doc.index,
+                     request: {
+                       type: "GET",
+                       url: "http://localhost:3000/ghemassages/" + doc._id
+                     }
+                   };
+                 })
+               };
+        res.render('mobile/news-detail-mb',{poststuvan:poststuvan,postsfilter:postsfilter,postsdetail:postsdetail,layout:'layouts/layoutmobile/layoutpostdetail'});
+  })
       })
     })
     .catch(err => {

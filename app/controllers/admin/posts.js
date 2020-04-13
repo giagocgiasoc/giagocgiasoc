@@ -183,7 +183,7 @@ exports.posts_update_posts_edit = (req, res, next) => {
   })
   .exec()
   .then((err,doc)=>{
-    res.redirect('/posts/posts-all');
+    res.redirect('/posts');
   });
 }
 exports.posts_delete = (req, res, next) => {

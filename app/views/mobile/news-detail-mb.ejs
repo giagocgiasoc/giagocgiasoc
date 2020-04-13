@@ -10,14 +10,12 @@
       </nav>
     </div>
     <div class="wrap-newsdetail">
-      <h1 class="title-newsdetail"><%=newsdetail.new[0].title%></h1>
+      <h1 class="title-newsdetail"><%=postsdetail.post[0].title%></h1>
       <div class="info-news-detail">
-        <span class="category-news"><%=newsdetail.new[0].category%></span>
-        <span class="post-date"><i class="fa fa-clock-o"></i> <%=newsdetail.new[0].day%></span>
-        <span class="count-view"><i class="fa fa-eye"></i> Số lượt xem: <%=newsdetail.new[0].view%></span>
+        <span class="post-date"><i class="fa fa-clock-o"></i> <%=postsdetail.post[0].day%></span>
       </div>
       <div class="content-newsdetail">
-        <%-newsdetail.new[0].description%>
+        <%-postsdetail.post[0].description%>
       </div>
     </div>
     <aside>
@@ -28,10 +26,10 @@
           </figure>
           <div class="view-content">
               <ul class="list-padding" style="">
-                <%for(var i=0;i<tinlienquan.count;i++){%>
+                <%for(var i=0;i<postsfilter.count;i++){%>
                   <li class="">
                     <h5>
-                      <a href="/tin-tuc/<%-tinlienquan.new[i].titleseo%>"><%=tinlienquan.new[i].title%></a>
+                      <a href="/tin-tuc/<%-postsfilter.post[i].titleseo%>"><%=postsfilter.post[i].title%></a>
                     </h5>
                   </li>
                 <%}%>

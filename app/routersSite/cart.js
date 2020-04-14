@@ -40,10 +40,10 @@ router.get('/cart/add-to-cart/:id', function(req, res, next) {
 router.get('/cart/shopping-cart/',function(req,res,next){
     if(req.useragent.isMobile){
       if (!req.session.cart) {
-          return res.render('mobile/shopping-cart-mb', {products: null,layout:'layouts/layoutmobile/layoutmobile'});
+          return res.render('mobile/shopping-cart-mb', {products: null,layout:'layouts/layoutmobile/layoutcart'});
       }
       var cart = new Cart(req.session.cart);
-                  res.render('mobile/shopping-cart-mb', {products: cart.generateArray(), totalPrice: cart.totalPrice,layout:'layouts/layoutmobile/layoutmobile'});
+                  res.render('mobile/shopping-cart-mb', {products: cart.generateArray(), totalPrice: cart.totalPrice,layout:'layouts/layoutmobile/layoutcart'});
                   next();
     }
     else{
@@ -115,7 +115,7 @@ router.get('/cart/checkout', function(req, res, next) {
     }
     var cart = new Cart(req.session.cart);
     var errMsg = req.flash('error')[0];
-    res.render('mobile/checkout-mb', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg,layout:'layouts/layoutmobile/layoutmobile'});
+    res.render('mobile/checkout-mb', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg,layout:'layouts/layoutmobile/layoutcart'});
   }else{
     if (!req.session.cart) {
         return res.redirect('/cart/shopping-cart');
@@ -235,7 +235,7 @@ router.post('/cart/checkout', function(req, res, next) {
                 console.log('Message sent: ' +  info.response);
             }
         });
-        res.render('mobile/muahangthanhcong',{successMsg: successMsg, noMessages: !successMsg,order:order,cart:cart.generateArray(),layout:'layouts/layoutmobile/layoutmobile'});
+        res.render('mobile/muahangthanhcong',{successMsg: successMsg, noMessages: !successMsg,order:order,cart:cart.generateArray(),layout:'layouts/layoutmobile/layoutcart'});
     });
   }
 }else{

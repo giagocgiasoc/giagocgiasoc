@@ -912,6 +912,574 @@ exports.camera_get_home = (req, res, next) => {
               });
   }
 }
+exports.cameratrongnha_get_home = (req, res, next) => {
+  if(req.useragent.isMobile){
+    Laptop.find({phanloai:"Camera",nhucau:"Camera Trong Nhà"})
+              .select("_id name nameseo nhucau nsx price tinhnang baohanh description index imagedefault image")
+              .limit(12)
+              .skip(0)
+              .sort('index')
+              .exec()
+              .then(docs => {
+                  var laptop = {
+                    count: docs.length,
+                    laptops: docs.map(doc => {
+                      return {
+                        name: doc.name,
+                        nameseo: doc.nameseo,
+                        price:doc.price,
+                        nsx:doc.nsx,
+                        nhucau:doc.nhucau,
+                        tinhnang:doc.tinhnang,
+                        baohanh: doc.baohanh,
+                        _id: doc._id,
+                        index:doc.index,
+                        description:doc.description,
+                        imagedefault:doc.imagedefault,
+                        image: doc.image,
+                        request: {
+                          type: "GET",
+                          url: "http://localhost:3000/laptop/" + doc._id
+                        }
+                      }
+                    })
+                  };
+                  Post.find()
+                       .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                       .limit(6)
+                       .sort('index')
+                       .exec()
+                       .then(docs => {
+                         const poststuvan = {
+                           count: docs.length,
+                           post: docs.map(doc => {
+                             return {
+                               title: doc.title,
+                               titleseo: doc.titleseo,
+                               shortdescription: doc.shortdescription,
+                               _id: doc._id,
+                               description:doc.description,
+                               day:doc.day,
+                               ogtitle:doc.ogtitle,
+                               ogdescription:doc.ogdescription,
+                               keywords:doc.keywords,
+                               typepost:doc.typepost,
+                               image:doc.image,
+                               index:doc.index,
+                               request: {
+                                 type: "GET",
+                                 url: "http://localhost:3000/ghemassages/" + doc._id
+                               }
+                             };
+                           })
+                         };
+                res.render('mobile/camera/cameratrongnha',{poststuvan:poststuvan,laptop:laptop,layout:'layouts/layoutmobile/layoutmobile'});
+              })
+              })
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                 });
+                });
+  }
+  else{
+    Laptop.find({phanloai:"Camera",nhucau:"Camera Trong Nhà"})
+              .select("_id name nameseo nhucau nsx price tinhnang baohanh description index imagedefault image")
+              .limit(12)
+              .skip(0)
+              .sort('index')
+              .exec()
+              .then(docs => {
+                  var laptop = {
+                    count: docs.length,
+                    laptops: docs.map(doc => {
+                      return {
+                        name: doc.name,
+                        nameseo: doc.nameseo,
+                        price:doc.price,
+                        nsx:doc.nsx,
+                        nhucau:doc.nhucau,
+                        tinhnang:doc.tinhnang,
+                        baohanh: doc.baohanh,
+                        _id: doc._id,
+                        index:doc.index,
+                        description:doc.description,
+                        imagedefault:doc.imagedefault,
+                        image: doc.image,
+                        request: {
+                          type: "GET",
+                          url: "http://localhost:3000/laptop/" + doc._id
+                        }
+                      }
+                    })
+                  };
+                  Post.find({typepost:"Tư Vấn Chọn Mua"})
+                       .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                       .limit(6)
+                       .sort('index')
+                       .exec()
+                       .then(docs => {
+                         const poststuvan = {
+                           count: docs.length,
+                           post: docs.map(doc => {
+                             return {
+                               title: doc.title,
+                               titleseo: doc.titleseo,
+                               shortdescription: doc.shortdescription,
+                               _id: doc._id,
+                               description:doc.description,
+                               day:doc.day,
+                               ogtitle:doc.ogtitle,
+                               ogdescription:doc.ogdescription,
+                               keywords:doc.keywords,
+                               typepost:doc.typepost,
+                               image:doc.image,
+                               index:doc.index,
+                               request: {
+                                 type: "GET",
+                                 url: "http://localhost:3000/ghemassages/" + doc._id
+                               }
+                             };
+                           })
+                         };
+                res.render('fontend/camera/cameratrongnha',{laptop:laptop,layout:'layouts/layout'});
+              })})
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                 });
+                });
+  }
+
+}
+exports.camerangoaitroi_get_home = (req, res, next) => {
+  if(req.useragent.isMobile){
+    Laptop.find({phanloai:"Camera",nhucau:"Camera Ngoài Trời"})
+              .select("_id name nameseo nhucau nsx price tinhnang baohanh description index imagedefault image")
+              .limit(12)
+              .skip(0)
+              .sort('index')
+              .exec()
+              .then(docs => {
+                  var laptop = {
+                    count: docs.length,
+                    laptops: docs.map(doc => {
+                      return {
+                        name: doc.name,
+                        nameseo: doc.nameseo,
+                        price:doc.price,
+                        nsx:doc.nsx,
+                        nhucau:doc.nhucau,
+                        tinhnang:doc.tinhnang,
+                        baohanh: doc.baohanh,
+                        _id: doc._id,
+                        index:doc.index,
+                        description:doc.description,
+                        imagedefault:doc.imagedefault,
+                        image: doc.image,
+                        request: {
+                          type: "GET",
+                          url: "http://localhost:3000/laptop/" + doc._id
+                        }
+                      }
+                    })
+                  };
+                  Post.find()
+                       .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                       .limit(6)
+                       .sort('index')
+                       .exec()
+                       .then(docs => {
+                         const poststuvan = {
+                           count: docs.length,
+                           post: docs.map(doc => {
+                             return {
+                               title: doc.title,
+                               titleseo: doc.titleseo,
+                               shortdescription: doc.shortdescription,
+                               _id: doc._id,
+                               description:doc.description,
+                               day:doc.day,
+                               ogtitle:doc.ogtitle,
+                               ogdescription:doc.ogdescription,
+                               keywords:doc.keywords,
+                               typepost:doc.typepost,
+                               image:doc.image,
+                               index:doc.index,
+                               request: {
+                                 type: "GET",
+                                 url: "http://localhost:3000/ghemassages/" + doc._id
+                               }
+                             };
+                           })
+                         };
+                res.render('mobile/camera/camerangoaitroi',{poststuvan:poststuvan,laptop:laptop,layout:'layouts/layoutmobile/layoutmobile'});
+              })
+              })
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                 });
+                });
+  }
+  else{
+    Laptop.find({phanloai:"Camera",nhucau:"Camera Ngoài Trời"})
+              .select("_id name nameseo nhucau nsx price tinhnang baohanh description index imagedefault image")
+              .limit(12)
+              .skip(0)
+              .sort('index')
+              .exec()
+              .then(docs => {
+                  var laptop = {
+                    count: docs.length,
+                    laptops: docs.map(doc => {
+                      return {
+                        name: doc.name,
+                        nameseo: doc.nameseo,
+                        price:doc.price,
+                        nsx:doc.nsx,
+                        nhucau:doc.nhucau,
+                        tinhnang:doc.tinhnang,
+                        baohanh: doc.baohanh,
+                        _id: doc._id,
+                        index:doc.index,
+                        description:doc.description,
+                        imagedefault:doc.imagedefault,
+                        image: doc.image,
+                        request: {
+                          type: "GET",
+                          url: "http://localhost:3000/laptop/" + doc._id
+                        }
+                      }
+                    })
+                  };
+                  Post.find({typepost:"Tư Vấn Chọn Mua"})
+                       .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                       .limit(6)
+                       .sort('index')
+                       .exec()
+                       .then(docs => {
+                         const poststuvan = {
+                           count: docs.length,
+                           post: docs.map(doc => {
+                             return {
+                               title: doc.title,
+                               titleseo: doc.titleseo,
+                               shortdescription: doc.shortdescription,
+                               _id: doc._id,
+                               description:doc.description,
+                               day:doc.day,
+                               ogtitle:doc.ogtitle,
+                               ogdescription:doc.ogdescription,
+                               keywords:doc.keywords,
+                               typepost:doc.typepost,
+                               image:doc.image,
+                               index:doc.index,
+                               request: {
+                                 type: "GET",
+                                 url: "http://localhost:3000/ghemassages/" + doc._id
+                               }
+                             };
+                           })
+                         };
+                res.render('fontend/camera/camerangoaitroi',{laptop:laptop,layout:'layouts/layout'});
+              })})
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                 });
+                });
+  }
+
+}
+exports.cameraip_get_home = (req, res, next) => {
+  if(req.useragent.isMobile){
+    Laptop.find({phanloai:"Camera",nhucau:"Camera IP"})
+              .select("_id name nameseo nhucau nsx price tinhnang baohanh description index imagedefault image")
+              .limit(12)
+              .skip(0)
+              .sort('index')
+              .exec()
+              .then(docs => {
+                  var laptop = {
+                    count: docs.length,
+                    laptops: docs.map(doc => {
+                      return {
+                        name: doc.name,
+                        nameseo: doc.nameseo,
+                        price:doc.price,
+                        nsx:doc.nsx,
+                        nhucau:doc.nhucau,
+                        tinhnang:doc.tinhnang,
+                        baohanh: doc.baohanh,
+                        _id: doc._id,
+                        index:doc.index,
+                        description:doc.description,
+                        imagedefault:doc.imagedefault,
+                        image: doc.image,
+                        request: {
+                          type: "GET",
+                          url: "http://localhost:3000/laptop/" + doc._id
+                        }
+                      }
+                    })
+                  };
+                  Post.find()
+                       .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                       .limit(6)
+                       .sort('index')
+                       .exec()
+                       .then(docs => {
+                         const poststuvan = {
+                           count: docs.length,
+                           post: docs.map(doc => {
+                             return {
+                               title: doc.title,
+                               titleseo: doc.titleseo,
+                               shortdescription: doc.shortdescription,
+                               _id: doc._id,
+                               description:doc.description,
+                               day:doc.day,
+                               ogtitle:doc.ogtitle,
+                               ogdescription:doc.ogdescription,
+                               keywords:doc.keywords,
+                               typepost:doc.typepost,
+                               image:doc.image,
+                               index:doc.index,
+                               request: {
+                                 type: "GET",
+                                 url: "http://localhost:3000/ghemassages/" + doc._id
+                               }
+                             };
+                           })
+                         };
+                res.render('mobile/camera/cameraip',{poststuvan:poststuvan,laptop:laptop,layout:'layouts/layoutmobile/layoutmobile'});
+              })
+              })
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                 });
+                });
+  }
+  else{
+    Laptop.find({phanloai:"Camera",nhucau:"Camera IP"})
+              .select("_id name nameseo nhucau nsx price tinhnang baohanh description index imagedefault image")
+              .limit(12)
+              .skip(0)
+              .sort('index')
+              .exec()
+              .then(docs => {
+                  var laptop = {
+                    count: docs.length,
+                    laptops: docs.map(doc => {
+                      return {
+                        name: doc.name,
+                        nameseo: doc.nameseo,
+                        price:doc.price,
+                        nsx:doc.nsx,
+                        nhucau:doc.nhucau,
+                        tinhnang:doc.tinhnang,
+                        baohanh: doc.baohanh,
+                        _id: doc._id,
+                        index:doc.index,
+                        description:doc.description,
+                        imagedefault:doc.imagedefault,
+                        image: doc.image,
+                        request: {
+                          type: "GET",
+                          url: "http://localhost:3000/laptop/" + doc._id
+                        }
+                      }
+                    })
+                  };
+                  Post.find({typepost:"Tư Vấn Chọn Mua"})
+                       .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                       .limit(6)
+                       .sort('index')
+                       .exec()
+                       .then(docs => {
+                         const poststuvan = {
+                           count: docs.length,
+                           post: docs.map(doc => {
+                             return {
+                               title: doc.title,
+                               titleseo: doc.titleseo,
+                               shortdescription: doc.shortdescription,
+                               _id: doc._id,
+                               description:doc.description,
+                               day:doc.day,
+                               ogtitle:doc.ogtitle,
+                               ogdescription:doc.ogdescription,
+                               keywords:doc.keywords,
+                               typepost:doc.typepost,
+                               image:doc.image,
+                               index:doc.index,
+                               request: {
+                                 type: "GET",
+                                 url: "http://localhost:3000/ghemassages/" + doc._id
+                               }
+                             };
+                           })
+                         };
+                res.render('fontend/camera/cameraip',{laptop:laptop,layout:'layouts/layout'});
+              })})
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                 });
+                });
+  }
+
+}
+exports.daughihinh_get_home = (req, res, next) => {
+  if(req.useragent.isMobile){
+    Laptop.find({phanloai:"Camera",nhucau:"Đầu Ghi Hình"})
+              .select("_id name nameseo nhucau nsx price tinhnang baohanh description index imagedefault image")
+              .limit(12)
+              .skip(0)
+              .sort('index')
+              .exec()
+              .then(docs => {
+                  var laptop = {
+                    count: docs.length,
+                    laptops: docs.map(doc => {
+                      return {
+                        name: doc.name,
+                        nameseo: doc.nameseo,
+                        price:doc.price,
+                        nsx:doc.nsx,
+                        nhucau:doc.nhucau,
+                        tinhnang:doc.tinhnang,
+                        baohanh: doc.baohanh,
+                        _id: doc._id,
+                        index:doc.index,
+                        description:doc.description,
+                        imagedefault:doc.imagedefault,
+                        image: doc.image,
+                        request: {
+                          type: "GET",
+                          url: "http://localhost:3000/laptop/" + doc._id
+                        }
+                      }
+                    })
+                  };
+                  Post.find()
+                       .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                       .limit(6)
+                       .sort('index')
+                       .exec()
+                       .then(docs => {
+                         const poststuvan = {
+                           count: docs.length,
+                           post: docs.map(doc => {
+                             return {
+                               title: doc.title,
+                               titleseo: doc.titleseo,
+                               shortdescription: doc.shortdescription,
+                               _id: doc._id,
+                               description:doc.description,
+                               day:doc.day,
+                               ogtitle:doc.ogtitle,
+                               ogdescription:doc.ogdescription,
+                               keywords:doc.keywords,
+                               typepost:doc.typepost,
+                               image:doc.image,
+                               index:doc.index,
+                               request: {
+                                 type: "GET",
+                                 url: "http://localhost:3000/ghemassages/" + doc._id
+                               }
+                             };
+                           })
+                         };
+                res.render('mobile/camera/daughihinh',{poststuvan:poststuvan,laptop:laptop,layout:'layouts/layoutmobile/layoutmobile'});
+              })
+              })
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                 });
+                });
+  }
+  else{
+    Laptop.find({phanloai:"Camera",nhucau:"Đầu Ghi Hình"})
+              .select("_id name nameseo nhucau nsx price tinhnang baohanh description index imagedefault image")
+              .limit(12)
+              .skip(0)
+              .sort('index')
+              .exec()
+              .then(docs => {
+                  var laptop = {
+                    count: docs.length,
+                    laptops: docs.map(doc => {
+                      return {
+                        name: doc.name,
+                        nameseo: doc.nameseo,
+                        price:doc.price,
+                        nsx:doc.nsx,
+                        nhucau:doc.nhucau,
+                        tinhnang:doc.tinhnang,
+                        baohanh: doc.baohanh,
+                        _id: doc._id,
+                        index:doc.index,
+                        description:doc.description,
+                        imagedefault:doc.imagedefault,
+                        image: doc.image,
+                        request: {
+                          type: "GET",
+                          url: "http://localhost:3000/laptop/" + doc._id
+                        }
+                      }
+                    })
+                  };
+                  Post.find({typepost:"Tư Vấn Chọn Mua"})
+                       .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                       .limit(6)
+                       .sort('index')
+                       .exec()
+                       .then(docs => {
+                         const poststuvan = {
+                           count: docs.length,
+                           post: docs.map(doc => {
+                             return {
+                               title: doc.title,
+                               titleseo: doc.titleseo,
+                               shortdescription: doc.shortdescription,
+                               _id: doc._id,
+                               description:doc.description,
+                               day:doc.day,
+                               ogtitle:doc.ogtitle,
+                               ogdescription:doc.ogdescription,
+                               keywords:doc.keywords,
+                               typepost:doc.typepost,
+                               image:doc.image,
+                               index:doc.index,
+                               request: {
+                                 type: "GET",
+                                 url: "http://localhost:3000/ghemassages/" + doc._id
+                               }
+                             };
+                           })
+                         };
+                res.render('fontend/camera/daughihinh',{laptop:laptop,layout:'layouts/layout'});
+              })})
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                 });
+                });
+  }
+
+}
 exports.laptopdell_get_home = (req, res, next) => {
   if(req.useragent.isMobile){
     Laptop.find({phanloai:"Laptop",nsx:"Laptop Dell"})

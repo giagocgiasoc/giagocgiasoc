@@ -5,6 +5,7 @@ var Cart = require('../models/cart');
  var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 router.get('/lap-top',MaytinhController.maytinh_get_home);
+router.get('/lap-dat-camera',MaytinhController.camera_get_home);
 router.get('/laptopdell',MaytinhController.laptopdell_get_home);
 router.get('/laptopasus',MaytinhController.laptopasus_get_home);
 router.get('/laptophp',MaytinhController.laptophp_get_home);

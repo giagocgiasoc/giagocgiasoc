@@ -10,7 +10,7 @@ const laptopSchema = new Schema({
   price:{type:Number,required:false},
   description:{type:String,default:"Mô tả"},
   tinhnang:{type:String,default:"Tính năng"},
-  baohanh:{type:String,default:"24 tháng"},
+  baohanh:{type:String,default:"12 tháng"},
   index:{type:Number,default:1},
   image:{type:Array,default:"no"},
   imagedefault:{type:Array,default:"no"}

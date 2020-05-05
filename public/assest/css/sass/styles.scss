@@ -51,7 +51,6 @@ a,a:hover{
   text-decoration: none;
 }
 *{margin:0px;
-  color:robotor;
   box-sizing: border-box;
 }
 ul,li{
@@ -121,6 +120,7 @@ div.danhmuc{
   width:60%;
 }
 ul.danhmuchot{
+  height: 20px;
       li{
         float:left;
       }
@@ -130,14 +130,16 @@ ul.danhmuchot{
         padding: 0 10px;
         font-family: robotor;
         font-size: 13px;
+        &:hover{
+           color:#fff100fa;
+         }
       }
+
       li.active{
         a{
           color:#fff;
         }
-        a:hover{
-          color:#ffa;
-        }
+
       }
     }
 .giohang{
@@ -721,7 +723,7 @@ div.suggest.mb{
 }
 .search .form-search a > i {
     position: absolute;
-    top: 29px;
+    top: 10px;
     right: 0;
     color: #fff;
     height: 38px;

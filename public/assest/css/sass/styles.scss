@@ -785,7 +785,7 @@ div.suggest.mb{
 .footer-1 .title {
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 10px;
     color: #19c8a9;
 }
@@ -795,6 +795,10 @@ div.suggest.mb{
     line-height: 28px;
     color: #333;
     cursor: pointer;
+    font-size: 13px;
+    i{
+      margin-right:5px;
+    }
 }
 .footer-main .nhan-mail {
     margin-top: 10px;

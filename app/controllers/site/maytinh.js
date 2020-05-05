@@ -670,7 +670,7 @@ exports.camera_get_home = (req, res, next) => {
                                      })
                                    };
 
-              res.render('mobile/laptop',{cameraall:cameraall,cameratrongnha:cameratrongnha,camerangoaitroi:camerangoaitroi,cameraip:cameraip,daughihinh:daughihinh,poststuvan:poststuvan,layout:'layouts/layoutmobile/layoutmobile'});
+              res.render('mobile/camera/camera',{cameraall:cameraall,cameratrongnha:cameratrongnha,camerangoaitroi:camerangoaitroi,cameraip:cameraip,daughihinh:daughihinh,poststuvan:poststuvan,layout:'layouts/layoutmobile/layoutmobile'});
 
             })
             })

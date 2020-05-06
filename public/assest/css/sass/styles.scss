@@ -1039,6 +1039,7 @@ div.suggest.mb{
   float:left;
   padding: 8px 0;
   background: transparent;
+  width:100%;
   ol{
     padding:0 10px;
     li{
@@ -1913,4 +1914,45 @@ width: 240px;
 }
 #checkout-form.mb{
     margin-bottom:80px;
+}
+.box-content {
+    padding: 0 10px;
+    font-size: 14px;
+    h2{
+      font-size: 14px;
+      font-family: robotob;
+      padding:5px;
+    }
+    li{
+      list-style: circle;
+      margin-left: 15px;
+    }
+
+}
+.box-cho-thue {
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    margin-bottom: 5px;
+    padding: 10px;
+    font-size: 13px;
+    width:80%;
+    li{
+      padding:5px;
+
+    }
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+h1.fontsize15{
+  font-size: 15px;
+  font-family: robotob;
+  padding:10px 0;
+}
+.content-ghemassage{
+  padding:0 100px;
 }

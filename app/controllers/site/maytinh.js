@@ -912,6 +912,50 @@ exports.camera_get_home = (req, res, next) => {
               });
   }
 }
+exports.dichvughemassage_get_home = (req, res, next) => {
+  if(req.useragent.isMobile){
+      Post.find()
+                                 .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                                 .limit(6)
+                                 .sort('index')
+                                 .exec()
+                                 .then(docs => {
+                                   const poststuvan = {
+                                     count: docs.length,
+                                     post: docs.map(doc => {
+                                       return {
+                                         title: doc.title,
+                                         titleseo: doc.titleseo,
+                                         shortdescription: doc.shortdescription,
+                                         _id: doc._id,
+                                         description:doc.description,
+                                         day:doc.day,
+                                         ogtitle:doc.ogtitle,
+                                         ogdescription:doc.ogdescription,
+                                         keywords:doc.keywords,
+                                         typepost:doc.typepost,
+                                         image:doc.image,
+                                         index:doc.index,
+                                         request: {
+                                           type: "GET",
+                                           url: "http://localhost:3000/ghemassages/" + doc._id
+                                         }
+                                       };
+                                     })
+                                   };
+              res.render('mobile/ghemassage/dichvughemassage',{poststuvan:poststuvan,layout:'layouts/layoutmobile/layoutmobile'});
+            })
+        .catch(err => {
+              console.log(err);
+              res.status(500).json({
+                error: err
+               });
+              });
+  }
+  else{
+              res.render('fontend/ghemassage/dichvughemassage',{layout:'layouts/layoutadmin'});
+  }
+}
 exports.cameratrongnha_get_home = (req, res, next) => {
   if(req.useragent.isMobile){
     Laptop.find({phanloai:"Camera",nhucau:"Camera Trong Nhà"})

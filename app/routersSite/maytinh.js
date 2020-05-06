@@ -10,6 +10,7 @@ router.get('/camera-quan-sat-trong-nha',MaytinhController.cameratrongnha_get_hom
 router.get('/camera-quan-sat-ngoai-troi',MaytinhController.camerangoaitroi_get_home);
 router.get('/camera-ip',MaytinhController.cameraip_get_home);
 router.get('/dau-ghi-hinh',MaytinhController.daughihinh_get_home);
+router.get('/dich-vu-ghe-massage',MaytinhController.dichvughemassage_get_home);
 router.get('/laptopdell',MaytinhController.laptopdell_get_home);
 router.get('/laptopasus',MaytinhController.laptopasus_get_home);
 router.get('/laptophp',MaytinhController.laptophp_get_home);

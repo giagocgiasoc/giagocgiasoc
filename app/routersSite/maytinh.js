@@ -6,6 +6,8 @@ var Cart = require('../models/cart');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 router.get('/lap-top',MaytinhController.maytinh_get_home);
 router.get('/lap-dat-camera',MaytinhController.camera_get_home);
+router.get('/thiet-bi-suc-khoe',MaytinhController.thietbisuckhoe_get_home);
+router.get('/ghe-massage-moi',MaytinhController.ghemassagemoi_get_home);
 router.get('/camera-quan-sat-trong-nha',MaytinhController.cameratrongnha_get_home);
 router.get('/camera-quan-sat-ngoai-troi',MaytinhController.camerangoaitroi_get_home);
 router.get('/camera-ip',MaytinhController.cameraip_get_home);

@@ -488,6 +488,570 @@ exports.maytinh_get_home = (req, res, next) => {
               });
   }
 }
+exports.thietbisuckhoe_get_home = (req, res, next) => {
+  if(req.useragent.isMobile){
+    Laptop.find({phanloai:"Thietbisuckhoe"})
+        .select("_id name nameseo nsx nhucau price tinhnang baohanh description index imagedefault image")
+        .limit(20)
+        .skip(0)
+        .sort('index')
+        .exec()
+        .then(docs => {
+            var laptopall = {
+              count: docs.length,
+              laptops: docs.map(doc => {
+                return {
+                  name: doc.name,
+                  nameseo: doc.nameseo,
+                  price:doc.price,
+                  nsx:doc.nsx,
+                  nhucau:doc.nhucau,
+                  tinhnang:doc.tinhnang,
+                  baohanh: doc.baohanh,
+                  _id: doc._id,
+                  index:doc.index,
+                  description:doc.description,
+                  imagedefault:doc.imagedefault,
+                  image: doc.image,
+                  request: {
+                    type: "GET",
+                    url: "http://localhost:3000/laptop/" + doc._id
+                  }
+                }
+              })
+            };
+            Laptop.find({phanloai:"Thietbisuckhoe",nhucau:"Ghemassage mới"})
+            .select("_id name nameseo nsx nhucau price tinhnang baohanh description index imagedefault image")
+            .limit(12)
+            .skip(0)
+            .sort('index')
+            .exec()
+            .then(docs => {
+                var ghemassagemoi = {
+                  count: docs.length,
+                  ghemassages: docs.map(doc => {
+                    return {
+                      name: doc.name,
+                      nameseo: doc.nameseo,
+                      price:doc.price,
+                      nsx:doc.nsx,
+                      nhucau:doc.nhucau,
+                      tinhnang:doc.tinhnang,
+                      baohanh: doc.baohanh,
+                      _id: doc._id,
+                      index:doc.index,
+                      description:doc.description,
+                      imagedefault:doc.imagedefault,
+                      image: doc.image,
+                      request: {
+                        type: "GET",
+                        url: "http://localhost:3000/thiet-bi-suc-khoe/" + doc._id
+                      }
+                    }
+                  })
+                };
+                Laptop.find({phanloai:"Thietbisuckhoe",nhucau:"Ghemassage cũ"})
+                .select("_id name nameseo nsx nhucau price tinhnang baohanh description index imagedefault image")
+                .limit(12)
+                .skip(0)
+                .sort('index')
+                .exec()
+                .then(docs => {
+                    var ghemassagecu = {
+                      count: docs.length,
+                      ghemassages: docs.map(doc => {
+                        return {
+                          name: doc.name,
+                          nameseo: doc.nameseo,
+                          price:doc.price,
+                          nsx:doc.nsx,
+                          nhucau:doc.nhucau,
+                          tinhnang:doc.tinhnang,
+                          baohanh: doc.baohanh,
+                          _id: doc._id,
+                          index:doc.index,
+                          description:doc.description,
+                          imagedefault:doc.imagedefault,
+                          image: doc.image,
+                          request: {
+                            type: "GET",
+                            url: "http://localhost:3000/laptop/" + doc._id
+                          }
+                        }
+                      })
+                    };
+                    Laptop.find({phanloai:"Thietbisuckhoe",nhucau:"Máy lọc không khí"})
+                    .select("_id name nsx nhucau price tinhnang baohanh description index imagedefault image")
+                    .limit(12)
+                    .skip(0)
+                    .sort('index')
+                    .exec()
+                    .then(docs => {
+                        var maylockhongkhi = {
+                          count: docs.length,
+                          maylockhongkhis: docs.map(doc => {
+                            return {
+                              name: doc.name,
+                              nameseo:doc.nameseo,
+                              price:doc.price,
+                              nsx:doc.nsx,
+                              nhucau:doc.nhucau,
+                              tinhnang:doc.tinhnang,
+                              baohanh: doc.baohanh,
+                              _id: doc._id,
+                              index:doc.index,
+                              description:doc.description,
+                              imagedefault:doc.imagedefault,
+                              image: doc.image,
+                              request: {
+                                type: "GET",
+                                url: "http://localhost:3000/laptop/" + doc._id
+                              }
+                            }
+                          })
+                        };
+                        Laptop.find({phanloai:"Thietbisuckhoe",nhucau:"Máy hút ẩm"})
+                        .select("_id name nameseo nsx nhucau price tinhnang baohanh description index imagedefault image")
+                        .limit(12)
+                        .skip(0)
+                        .sort('index')
+                        .exec()
+                        .then(docs => {
+                            var mayhutam = {
+                              count: docs.length,
+                              mayhutams: docs.map(doc => {
+                                return {
+                                  name: doc.name,
+                                  nameseo: doc.nameseo,
+                                  nsx:doc.nsx,
+                                  nhucau:doc.nhucau,
+                                  price:doc.price,
+                                  tinhnang:doc.tinhnang,
+                                  baohanh: doc.baohanh,
+                                  _id: doc._id,
+                                  index:doc.index,
+                                  description:doc.description,
+                                  imagedefault:doc.imagedefault,
+                                  image: doc.image,
+                                  request: {
+                                    type: "GET",
+                                    url: "http://localhost:3000/laptop/" + doc._id
+                                  }
+                                }
+                              })
+                            };
+                            Post.find()
+                                 .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                                 .limit(6)
+                                 .sort('index')
+                                 .exec()
+                                 .then(docs => {
+                                   const poststuvan = {
+                                     count: docs.length,
+                                     post: docs.map(doc => {
+                                       return {
+                                         title: doc.title,
+                                         titleseo: doc.titleseo,
+                                         shortdescription: doc.shortdescription,
+                                         _id: doc._id,
+                                         description:doc.description,
+                                         day:doc.day,
+                                         ogtitle:doc.ogtitle,
+                                         ogdescription:doc.ogdescription,
+                                         keywords:doc.keywords,
+                                         typepost:doc.typepost,
+                                         image:doc.image,
+                                         index:doc.index,
+                                         request: {
+                                           type: "GET",
+                                           url: "http://localhost:3000/ghemassages/" + doc._id
+                                         }
+                                       };
+                                     })
+                                   };
+
+              res.render('mobile/thietbisuckhoe/thietbisuckhoe',{laptopall:laptopall,ghemassagemoi:ghemassagemoi,ghemassagecu:ghemassagecu,maylockhongkhi:maylockhongkhi,mayhutam:mayhutam,poststuvan:poststuvan,layout:'layouts/layoutmobile/layoutmobile'});
+            })
+            })
+            })
+          })
+          })
+          })
+        .catch(err => {
+              console.log(err);
+              res.status(500).json({
+                error: err
+               });
+              });
+  }
+  else{
+    Laptop.find({phanloai:"Thietbisuckhoe"})
+        .select("_id name nameseo nhucau nsx price tinhnang baohanh description index imagedefault image")
+        .limit(20)
+        .skip(0)
+        .sort('index')
+        .exec()
+        .then(docs => {
+            var laptopall = {
+              count: docs.length,
+              laptops: docs.map(doc => {
+                return {
+                  name: doc.name,
+                  nameseo: doc.nameseo,
+                  price:doc.price,
+                  nsx:doc.nsx,
+                  nhucau:doc.nhucau,
+                  tinhnang:doc.tinhnang,
+                  baohanh: doc.baohanh,
+                  _id: doc._id,
+                  index:doc.index,
+                  description:doc.description,
+                  imagedefault:doc.imagedefault,
+                  image: doc.image,
+                  request: {
+                    type: "GET",
+                    url: "http://localhost:3000/laptop/" + doc._id
+                  }
+                }
+              })
+            };
+            Laptop.find({phanloai:"Thietbisuckhoe",nhucau:"Ghemassage mới"})
+            .select("_id name nameseo nsx nhucau price tinhnang baohanh description index imagedefault image")
+            .limit(12)
+            .skip(0)
+            .sort('index')
+            .exec()
+            .then(docs => {
+                var ghemassagemoi = {
+                  count: docs.length,
+                  ghemassages: docs.map(doc => {
+                    return {
+                      name: doc.name,
+                      nameseo: doc.nameseo,
+                      price:doc.price,
+                      nsx:doc.nsx,
+                      nhucau:doc.nhucau,
+                      tinhnang:doc.tinhnang,
+                      baohanh: doc.baohanh,
+                      _id: doc._id,
+                      index:doc.index,
+                      description:doc.description,
+                      imagedefault:doc.imagedefault,
+                      image: doc.image,
+                      request: {
+                        type: "GET",
+                        url: "http://localhost:3000/laptop/" + doc._id
+                      }
+                    }
+                  })
+                };
+                Laptop.find({phanloai:"Thietbisuckhoe",nsx:"Ghemassage cũ"})
+                .select("_id name nameseo nsx nhucau price tinhnang baohanh description index imagedefault image")
+                .limit(12)
+                .skip(0)
+                .sort('index')
+                .exec()
+                .then(docs => {
+                    var ghemassagecu = {
+                      count: docs.length,
+                      ghemassages: docs.map(doc => {
+                        return {
+                          name: doc.name,
+                          nameseo: doc.nameseo,
+                          price:doc.price,
+                          nsx:doc.nsx,
+                          nhucau:doc.nhucau,
+                          tinhnang:doc.tinhnang,
+                          baohanh: doc.baohanh,
+                          _id: doc._id,
+                          index:doc.index,
+                          description:doc.description,
+                          imagedefault:doc.imagedefault,
+                          image: doc.image,
+                          request: {
+                            type: "GET",
+                            url: "http://localhost:3000/laptop/" + doc._id
+                          }
+                        }
+                      })
+                    };
+                    Laptop.find({phanloai:"Thietbisuckhoe",nhucau:"Máy lọc không khí"})
+                    .select("_id name nsx nhucau price tinhnang baohanh description index imagedefault image")
+                    .limit(12)
+                    .skip(0)
+                    .sort('index')
+                    .exec()
+                    .then(docs => {
+                        var maylockhongkhi = {
+                          count: docs.length,
+                          maylockhongkhis: docs.map(doc => {
+                            return {
+                              name: doc.name,
+                              nameseo:doc.nameseo,
+                              price:doc.price,
+                              nsx:doc.nsx,
+                              nhucau:doc.nhucau,
+                              tinhnang:doc.tinhnang,
+                              baohanh: doc.baohanh,
+                              _id: doc._id,
+                              index:doc.index,
+                              description:doc.description,
+                              imagedefault:doc.imagedefault,
+                              image: doc.image,
+                              request: {
+                                type: "GET",
+                                url: "http://localhost:3000/may-loc-khong-khi/" + doc._id
+                              }
+                            }
+                          })
+                        };
+                        Laptop.find({phanloai:"Thietbisuckhoe",nhucau:"Máy hút ẩm"})
+                        .select("_id name nameseo nsx nhucau price tinhnang baohanh description index imagedefault image")
+                        .limit(12)
+                        .skip(0)
+                        .sort('index')
+                        .exec()
+                        .then(docs => {
+                            var mayhutam = {
+                              count: docs.length,
+                              mayhutams: docs.map(doc => {
+                                return {
+                                  name: doc.name,
+                                  nameseo: doc.nameseo,
+                                  nsx:doc.nsx,
+                                  nhucau:doc.nhucau,
+                                  price:doc.price,
+                                  tinhnang:doc.tinhnang,
+                                  baohanh: doc.baohanh,
+                                  _id: doc._id,
+                                  index:doc.index,
+                                  description:doc.description,
+                                  imagedefault:doc.imagedefault,
+                                  image: doc.image,
+                                  request: {
+                                    type: "GET",
+                                    url: "http://localhost:3000/laptop/" + doc._id
+                                  }
+                                }
+                              })
+                            };
+                            Post.find({typepost:"Tư Vấn Chọn Mua"})
+                                 .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                                 .limit(6)
+                                 .sort('index')
+                                 .exec()
+                                 .then(docs => {
+                                   const poststuvan = {
+                                     count: docs.length,
+                                     post: docs.map(doc => {
+                                       return {
+                                         title: doc.title,
+                                         titleseo: doc.titleseo,
+                                         shortdescription: doc.shortdescription,
+                                         _id: doc._id,
+                                         description:doc.description,
+                                         day:doc.day,
+                                         ogtitle:doc.ogtitle,
+                                         ogdescription:doc.ogdescription,
+                                         keywords:doc.keywords,
+                                         typepost:doc.typepost,
+                                         image:doc.image,
+                                         index:doc.index,
+                                         request: {
+                                           type: "GET",
+                                           url: "http://localhost:3000/ghemassages/" + doc._id
+                                         }
+                                       };
+                                     })
+                                   };
+                                   Post.find({typepost:"Hướng Dẫn Kỹ Thuật"})
+                                        .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                                        .limit(8)
+                                        .sort('index')
+                                        .exec()
+                                        .then(docs => {
+                                          const postshuongdan = {
+                                            count: docs.length,
+                                            post: docs.map(doc => {
+                                              return {
+                                                title: doc.title,
+                                                titleseo: doc.titleseo,
+                                                shortdescription: doc.shortdescription,
+                                                _id: doc._id,
+                                                description:doc.description,
+                                                day:doc.day,
+                                                ogtitle:doc.ogtitle,
+                                                ogdescription:doc.ogdescription,
+                                                keywords:doc.keywords,
+                                                typepost:doc.typepost,
+                                                image:doc.image,
+                                                index:doc.index,
+                                                request: {
+                                                  type: "GET",
+                                                  url: "http://localhost:3000/ghemassages/" + doc._id
+                                                }
+                                              };
+                                            })
+                                          };
+              res.render('fontend/thietbisuckhoe/thietbisuckhoe',{laptopall:laptopall,ghemassagemoi:ghemassagemoi,ghemassagecu:ghemassagecu,maylockhongkhi:maylockhongkhi,mayhutam:mayhutam,postshuongdan:postshuongdan,poststuvan:poststuvan,layout:'layouts/layoutadmin'});
+
+            })
+            })
+            })
+            })
+          })
+          })
+          })
+        .catch(err => {
+              console.log(err);
+              res.status(500).json({
+                error: err
+               });
+              });
+  }
+}
+exports.ghemassagemoi_get_home = (req, res, next) => {
+  if(req.useragent.isMobile){
+    Laptop.find({phanloai:"Thietbisuckhoe",nhucau:"Ghemassage mới"})
+              .select("_id name nameseo nhucau nsx price tinhnang baohanh description index imagedefault image")
+              .limit(12)
+              .skip(0)
+              .sort('index')
+              .exec()
+              .then(docs => {
+                  var laptop = {
+                    count: docs.length,
+                    laptops: docs.map(doc => {
+                      return {
+                        name: doc.name,
+                        nameseo: doc.nameseo,
+                        price:doc.price,
+                        nsx:doc.nsx,
+                        nhucau:doc.nhucau,
+                        tinhnang:doc.tinhnang,
+                        baohanh: doc.baohanh,
+                        _id: doc._id,
+                        index:doc.index,
+                        description:doc.description,
+                        imagedefault:doc.imagedefault,
+                        image: doc.image,
+                        request: {
+                          type: "GET",
+                          url: "http://localhost:3000/laptop/" + doc._id
+                        }
+                      }
+                    })
+                  };
+                  Post.find()
+                       .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                       .limit(6)
+                       .sort('index')
+                       .exec()
+                       .then(docs => {
+                         const poststuvan = {
+                           count: docs.length,
+                           post: docs.map(doc => {
+                             return {
+                               title: doc.title,
+                               titleseo: doc.titleseo,
+                               shortdescription: doc.shortdescription,
+                               _id: doc._id,
+                               description:doc.description,
+                               day:doc.day,
+                               ogtitle:doc.ogtitle,
+                               ogdescription:doc.ogdescription,
+                               keywords:doc.keywords,
+                               typepost:doc.typepost,
+                               image:doc.image,
+                               index:doc.index,
+                               request: {
+                                 type: "GET",
+                                 url: "http://localhost:3000/ghemassages/" + doc._id
+                               }
+                             };
+                           })
+                         };
+                res.render('mobile/thietbisuckhoe/ghemassagemoi',{poststuvan:poststuvan,laptop:laptop,layout:'layouts/layoutmobile/layoutmobile'});
+              })
+              })
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                 });
+                });
+  }
+  else{
+    Laptop.find({phanloai:"Thietbisuckhoe",nhucau:"Ghemassage mới"})
+              .select("_id name nameseo nhucau nsx price tinhnang baohanh description index imagedefault image")
+              .limit(12)
+              .skip(0)
+              .sort('index')
+              .exec()
+              .then(docs => {
+                  var laptop = {
+                    count: docs.length,
+                    laptops: docs.map(doc => {
+                      return {
+                        name: doc.name,
+                        nameseo: doc.nameseo,
+                        price:doc.price,
+                        nsx:doc.nsx,
+                        nhucau:doc.nhucau,
+                        tinhnang:doc.tinhnang,
+                        baohanh: doc.baohanh,
+                        _id: doc._id,
+                        index:doc.index,
+                        description:doc.description,
+                        imagedefault:doc.imagedefault,
+                        image: doc.image,
+                        request: {
+                          type: "GET",
+                          url: "http://localhost:3000/laptop/" + doc._id
+                        }
+                      }
+                    })
+                  };
+                  Post.find({typepost:"Tư Vấn Chọn Mua"})
+                       .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                       .limit(6)
+                       .sort('index')
+                       .exec()
+                       .then(docs => {
+                         const poststuvan = {
+                           count: docs.length,
+                           post: docs.map(doc => {
+                             return {
+                               title: doc.title,
+                               titleseo: doc.titleseo,
+                               shortdescription: doc.shortdescription,
+                               _id: doc._id,
+                               description:doc.description,
+                               day:doc.day,
+                               ogtitle:doc.ogtitle,
+                               ogdescription:doc.ogdescription,
+                               keywords:doc.keywords,
+                               typepost:doc.typepost,
+                               image:doc.image,
+                               index:doc.index,
+                               request: {
+                                 type: "GET",
+                                 url: "http://localhost:3000/ghemassages/" + doc._id
+                               }
+                             };
+                           })
+                         };
+                res.render('fontend/thietbisuckhoe/ghemassagemoi',{laptop:laptop,layout:'layouts/layout'});
+              })})
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                 });
+                });
+  }
+
+}
 exports.camera_get_home = (req, res, next) => {
   if(req.useragent.isMobile){
     Laptop.find({phanloai:"Camera"})

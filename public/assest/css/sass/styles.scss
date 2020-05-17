@@ -1522,6 +1522,9 @@ a.liveeventmb{
     float:left;
     width:100%;
     }
+    li.item-danhmuc-mb.end{
+      width: calc(50% - 10px)!important;
+    }
     li.item-danhmuc-mb{
     font-family: robotor;
     font-size: 12px;

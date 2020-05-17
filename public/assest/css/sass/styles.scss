@@ -313,6 +313,18 @@ div.laptop-left{
   width:80%;
   float:right;
 }
+.laptop-right.bachhoaonline{
+  width:100%;
+  div.product{
+    padding:0px!important;
+    h2{
+      width:20%!important;
+    }
+  }
+  li.item-product{
+    width:20%!important;
+  }
+}
 .product{
   padding:0 20px;
   .title-product{
@@ -1905,6 +1917,9 @@ width: 240px;
 }
 .wrapper-product-mb{
   margin-bottom:80px;
+}
+.wrapper-product-mb.bachhoaonline{
+  margin-top:50px;
 }
 .wrap-img-product-detail{
   img{max-height: 200px;}

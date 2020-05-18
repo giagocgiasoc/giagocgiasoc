@@ -1,0 +1,68 @@
+<div class="breadcrumb">
+      <ol>
+            <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i> Trang chủ</a></li>
+              <li class="breadcrumb-item" active="" aria-current="page"> Dịch vụ cho thuê máy photocopy </li>
+      </ol>
+</div>
+<div class="panel-tintuc">
+  <div class="tab-tintuc">
+    <ul class="wapper-tintuc">
+      <li class="item-tab active">
+        <span>Tư vấn chọn mua</span>
+        <ul>
+          <li class="item-tintuc ">
+            <div class="owl-slide-tintuc">
+            <% for(var i=0;i<poststuvan.count;i++){ %>
+              <div class="owl-item">
+                  <div class="detail-tintuc">
+                    <div class="image-tintuc">
+                        <img src="/assest/image/<%=poststuvan.post[i].image%>" alt="">
+                    </div>
+
+                    <div class="content-tintuc">
+                        <div class="title-tintuc">
+                          <a href="/tin-tuc/<%=poststuvan.post[i].titleseo%>" title=""> <%=poststuvan.post[i].title%></a>
+                        </div>
+                        <div class="mota-tintuc">
+                            <%-poststuvan.post[i].shortdescription%>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            <%} %>
+
+
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="item-tab ">
+        <span>Hướng dẫn kỹ thuật</span>
+        <ul>
+          <li class="item-tintuc ">
+            <div class="owl-slide-tintuc">
+              <% for(var i=0;i<postshuongdan.count;i++){ %>
+                <div class="owl-item">
+                    <div class="detail-tintuc">
+                      <div class="image-tintuc">
+                          <img src="/assest/image/<%=postshuongdan.post[i].image%>" alt="">
+                      </div>
+                      <div class="content-tintuc">
+                          <div class="title-tintuc">
+                            <a href="/tin-tuc/<%=postshuongdan.post[i].titleseo%>" title=""> <%=postshuongdan.post[i].title%></a>
+                          </div>
+                          <div class="mota-tintuc">
+                              <%-postshuongdan.post[i].shortdescription%>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              <%} %>
+              </div>
+
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>

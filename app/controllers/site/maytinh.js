@@ -488,7 +488,7 @@ exports.maytinh_get_home = (req, res, next) => {
               });
   }
 }
-exports.mayphoto_get_home = (req, res, next) => {
+exports.mayphotocopy_get_home = (req, res, next) => {
   if(req.useragent.isMobile){
     Laptop.find({phanloai:"photocopy"})
         .select("_id name nameseo nsx nhucau price tinhnang baohanh description index imagedefault image")
@@ -717,6 +717,124 @@ exports.mayphoto_get_home = (req, res, next) => {
 
             })
           })
+          })
+          })
+        .catch(err => {
+              console.log(err);
+              res.status(500).json({
+                error: err
+               });
+              });
+  }
+}
+exports.thuemayphotocopy_get_home = (req, res, next) => {
+  if(req.useragent.isMobile){
+
+                            Post.find()
+                                 .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                                 .limit(6)
+                                 .sort('index')
+                                 .exec()
+                                 .then(docs => {
+                                   const poststuvan = {
+                                     count: docs.length,
+                                     post: docs.map(doc => {
+                                       return {
+                                         title: doc.title,
+                                         titleseo: doc.titleseo,
+                                         shortdescription: doc.shortdescription,
+                                         _id: doc._id,
+                                         description:doc.description,
+                                         day:doc.day,
+                                         ogtitle:doc.ogtitle,
+                                         ogdescription:doc.ogdescription,
+                                         keywords:doc.keywords,
+                                         typepost:doc.typepost,
+                                         image:doc.image,
+                                         index:doc.index,
+                                         request: {
+                                           type: "GET",
+                                           url: "http://localhost:3000/ghemassages/" + doc._id
+                                         }
+                                       };
+                                     })
+                                   };
+
+              res.render('mobile/photocopy/thuemayphotocopy',{poststuvan:poststuvan,layout:'layouts/layoutmobile/layoutmobile'});
+
+
+          })
+        .catch(err => {
+              console.log(err);
+              res.status(500).json({
+                error: err
+               });
+              });
+  }
+  else{
+
+
+                            Post.find({typepost:"Tư Vấn Chọn Mua"})
+                                 .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                                 .limit(6)
+                                 .sort('index')
+                                 .exec()
+                                 .then(docs => {
+                                   const poststuvan = {
+                                     count: docs.length,
+                                     post: docs.map(doc => {
+                                       return {
+                                         title: doc.title,
+                                         titleseo: doc.titleseo,
+                                         shortdescription: doc.shortdescription,
+                                         _id: doc._id,
+                                         description:doc.description,
+                                         day:doc.day,
+                                         ogtitle:doc.ogtitle,
+                                         ogdescription:doc.ogdescription,
+                                         keywords:doc.keywords,
+                                         typepost:doc.typepost,
+                                         image:doc.image,
+                                         index:doc.index,
+                                         request: {
+                                           type: "GET",
+                                           url: "http://localhost:3000/ghemassages/" + doc._id
+                                         }
+                                       };
+                                     })
+                                   };
+                                   Post.find({typepost:"Hướng Dẫn Kỹ Thuật"})
+                                        .select("_id title titleseo shortdescription description day ogtitle ogdescription keywords typepost image index")
+                                        .limit(8)
+                                        .sort('index')
+                                        .exec()
+                                        .then(docs => {
+                                          const postshuongdan = {
+                                            count: docs.length,
+                                            post: docs.map(doc => {
+                                              return {
+                                                title: doc.title,
+                                                titleseo: doc.titleseo,
+                                                shortdescription: doc.shortdescription,
+                                                _id: doc._id,
+                                                description:doc.description,
+                                                day:doc.day,
+                                                ogtitle:doc.ogtitle,
+                                                ogdescription:doc.ogdescription,
+                                                keywords:doc.keywords,
+                                                typepost:doc.typepost,
+                                                image:doc.image,
+                                                index:doc.index,
+                                                request: {
+                                                  type: "GET",
+                                                  url: "http://localhost:3000/ghemassages/" + doc._id
+                                                }
+                                              };
+                                            })
+                                          };
+              res.render('fontend/photocopy/thuemayphotocopy',{postshuongdan:postshuongdan,poststuvan:poststuvan,layout:'layouts/layoutadmin'});
+
+
           })
           })
         .catch(err => {

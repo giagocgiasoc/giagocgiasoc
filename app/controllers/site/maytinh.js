@@ -520,7 +520,7 @@ exports.mayphoto_get_home = (req, res, next) => {
                 }
               })
             };
-            Laptop.find({phanloai:"Laptop",nsx:"xerox"})
+            Laptop.find({phanloai:"photocopy",nsx:"xerox"})
             .select("_id name nameseo nsx nhucau price tinhnang baohanh description index imagedefault image")
             .limit(12)
             .skip(0)

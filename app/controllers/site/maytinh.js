@@ -488,7 +488,7 @@ exports.maytinh_get_home = (req, res, next) => {
               });
   }
 }
-exports.mayphotocopy_get_home = (req, res, next) => {
+exports.mayphoto_get_home = (req, res, next) => {
   if(req.useragent.isMobile){
     Laptop.find({phanloai:"photocopy"})
         .select("_id name nameseo nsx nhucau price tinhnang baohanh description index imagedefault image")

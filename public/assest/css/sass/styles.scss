@@ -1993,8 +1993,31 @@ h1.fontsize15{
   h2{
     font-size: 16px;
     font-weight: bold;
+    padding:10px 0;
   }
 }
 .wrapper-product-mb.thuemayphoto{
   padding:5px;
+}
+.mayphoto{
+  padding:30px 100px 0;
+}
+.table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border: 1px solid #dee2e6;
+    text-align: left;
 }
